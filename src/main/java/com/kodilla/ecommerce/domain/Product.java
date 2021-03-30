@@ -1,32 +1,36 @@
 package com.kodilla.ecommerce.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Entity(name = "products")
+@Builder
+@Data
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @NotNull
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column(name = "name")
+    
+    @Size(min = 4, max = 50)
     private String name;
 
-    @Column(name = "description")
+    @Size(max = 1000)
     private String description;
 
-    @Column(name = "price")
+    @DecimalMin(value = "1.0")
     private BigDecimal price;
 
     @Column(name = "group_id")
