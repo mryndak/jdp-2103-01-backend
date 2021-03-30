@@ -1,9 +1,7 @@
-# Java Gradle CircleCI 2.0 configuration file
+# Java Gradle CircleCI 2.1 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-orbs:
-  gradle-orb: entur/gradle-orb@0.0.6
 version: 2.1
 jobs:
   build:
