@@ -8,7 +8,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:13.0.2-jdk-buster-browsers
+      - image: circleci/openjdk:11.0.8-jdk-buster-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
