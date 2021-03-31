@@ -18,7 +18,7 @@ public class UsersController {
         return new ArrayList<>();
     }
 
-    @GetMapping(value = "{userId}")
+    @GetMapping(value = "/{userId}")
     public UserDto getUser(@PathVariable Long userId) {
         return new UserDto(1L,"Test User", "1", 10000L);
     }
