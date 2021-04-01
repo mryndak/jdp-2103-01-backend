@@ -4,6 +4,7 @@ import com.kodilla.ecommerce.controller.enums.StatusOrder;
 import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.OrderDto;
+import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -18,20 +19,20 @@ public class OrderController {
 
     @GetMapping
     public List<OrderDto> getOrders() {
-        List<Product> products = Arrays.asList(Product.builder()
+        ProductDto products = ProductDto.builder()
                 .id(1L)
                 .name("kurtka zimowa")
                 .description("")
                 .price(new BigDecimal(100))
                 .groupId(1L)
-                .build());
+                .build();
 
-        OrderItemDto orderItemDto = OrderItemDto.builder()
+        List<OrderItemDto> orderItemDto = Arrays.asList(OrderItemDto.builder()
                 .id(1L)
                 .product(products)
                 .quantity(3)
                 .totalPrice(new BigDecimal(300))
-                .build();
+                .build());
 
         return Arrays.asList(OrderDto.builder()
                 .id(1L)

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class OrderDto {
     private Long id;
-    private OrderItemDto items;
+    private List<OrderItemDto> items;
     private String number;
     private StatusOrder status;
     private String shippingAddress;
