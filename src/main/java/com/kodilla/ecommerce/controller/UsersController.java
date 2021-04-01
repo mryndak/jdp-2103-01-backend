@@ -25,7 +25,7 @@ public class UsersController {
         );
     }
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping("/{userId}")
     public UserDto getUser(@PathVariable Long userId) {
         return UserDto.builder()
                 .id(1L)
@@ -35,12 +35,12 @@ public class UsersController {
                 .build();
     }
 
-    @PutMapping(value = "blockUser")
+    @PutMapping("blockUser")
     public void blockUser(@RequestBody UserDto userDto){
         userDto.setStatus(StatusUser.BLOCKED_USER);
     }
 
-    @PutMapping(value = "generateUserKey")
+    @PutMapping("generateUserKey")
     public void generateUserKey(@RequestBody UserDto userDto){
         userDto.setUserKey(10001L);
     }
