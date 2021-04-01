@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class Group {
     private Long groupId;
 
     @NotNull
-    @Column(name = "name")
+    @Size(min = 4, max = 50)
     private String name;
 
 }
