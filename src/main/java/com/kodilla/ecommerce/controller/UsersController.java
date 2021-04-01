@@ -25,8 +25,8 @@ public class UsersController {
         );
     }
 
-    @GetMapping("/{userId}")
-    public UserDto getUser(@PathVariable Long userId) {
+    @GetMapping("/{id}")
+    public UserDto getUser(@PathVariable Long id) {
         return UserDto.builder()
                 .id(1L)
                 .username("Test User")
@@ -35,19 +35,34 @@ public class UsersController {
                 .build();
     }
 
-    @PutMapping("blockUser")
-    public void blockUser(@RequestBody UserDto userDto){
-        userDto.setStatus(StatusUser.BLOCKED_USER);
+    @PutMapping("/block")
+    public UserDto blockUser(@RequestBody UserDto userDto){
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(StatusUser.BLOCKED_USER)
+                .userKey(10000L)
+                .build();
     }
 
-    @PutMapping("generateUserKey")
-    public void generateUserKey(@RequestBody UserDto userDto){
-        userDto.setUserKey(10001L);
+    @PutMapping("/{id}")
+    public UserDto generateUserKey(@PathVariable Long id){
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(StatusUser.ACTIVE_USER)
+                .userKey(10001L)
+                .build();
     }
 
     @PostMapping
-    public void createUser(@RequestBody UserDto userDto) {
-
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(StatusUser.ACTIVE_USER)
+                .userKey(10000L)
+                .build();
     }
 
 
