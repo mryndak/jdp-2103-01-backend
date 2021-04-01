@@ -1,5 +1,6 @@
 package com.kodilla.ecommerce.controller;
 
+import com.kodilla.ecommerce.controller.enums.StatusUser;
 import com.kodilla.ecommerce.dto.ExampleDto;
 import com.kodilla.ecommerce.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class UsersController {
                 UserDto.builder()
                         .id(1L)
                         .username("Test User")
-                        .status(UserDto.Status.ACTIVE_USER)
+                        .status(StatusUser.ACTIVE_USER)
                         .userKey(10000L)
                         .build()
         );
@@ -32,14 +33,14 @@ public class UsersController {
         return UserDto.builder()
                 .id(1L)
                 .username("Test User")
-                .status(UserDto.Status.ACTIVE_USER)
+                .status(StatusUser.ACTIVE_USER)
                 .userKey(10000L)
                 .build();
     }
 
     @PutMapping(value = "blockUser")
     public void blockUser(@RequestBody UserDto userDto){
-        userDto.setStatus(UserDto.Status.BLOCKED_USER);
+        userDto.setStatus(StatusUser.BLOCKED_USER);
     }
 
     @PutMapping(value = "generateUserKey")
@@ -47,7 +48,7 @@ public class UsersController {
         userDto.setUserKey(10001L);
     }
 
-    @PostMapping(value = "createUser")
+    @PostMapping
     public void createUser(@RequestBody UserDto userDto) {
 
     }
