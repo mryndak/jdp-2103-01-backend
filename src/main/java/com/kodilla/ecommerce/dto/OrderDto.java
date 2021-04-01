@@ -1,6 +1,6 @@
 package com.kodilla.ecommerce.dto;
 
-import com.kodilla.ecommerce.controller.enums.StatusOrder;
+import com.kodilla.ecommerce.domain.enums.StatusOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

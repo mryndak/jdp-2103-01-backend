@@ -1,4 +1,4 @@
-package com.kodilla.ecommerce.controller.enums;
+package com.kodilla.ecommerce.domain.enums;
 
 public enum StatusOrder {
     ACCEPTED,

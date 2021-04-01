@@ -1,8 +1,7 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.controller.enums.StatusOrder;
+import com.kodilla.ecommerce.domain.enums.StatusOrder;
 import com.kodilla.ecommerce.dto.OrderItemDto;
-import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
