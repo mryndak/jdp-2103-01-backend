@@ -1,4 +1,4 @@
-package com.kodilla.ecommerce.controller.enums;
+package com.kodilla.ecommerce.dto.enums;
 
 public enum StatusUser{
     BLOCKED_USER,

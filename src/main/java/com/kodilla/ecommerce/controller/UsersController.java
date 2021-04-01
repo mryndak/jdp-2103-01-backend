@@ -1,12 +1,9 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.controller.enums.StatusUser;
-import com.kodilla.ecommerce.dto.ExampleDto;
+import com.kodilla.ecommerce.dto.enums.StatusUser;
 import com.kodilla.ecommerce.dto.UserDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

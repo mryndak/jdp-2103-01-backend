@@ -1,6 +1,6 @@
 package com.kodilla.ecommerce.domain;
 
-import com.kodilla.ecommerce.controller.enums.StatusUser;
+import com.kodilla.ecommerce.dto.enums.StatusUser;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,13 +23,14 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Size(min = 4, max = 50)
+    @Column("name")
     private String username;
 
-    @Column(name = "status")
+    @NotNull
     private StatusUser status;
 
-    @Column(name = "key")
     private Long userKey;
 
 
