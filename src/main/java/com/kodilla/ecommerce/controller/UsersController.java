@@ -1,6 +1,6 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.dto.enums.StatusUser;
+import com.kodilla.ecommerce.domain.enums.StatusUser;
 import com.kodilla.ecommerce.dto.UserDto;
 import org.springframework.web.bind.annotation.*;
 

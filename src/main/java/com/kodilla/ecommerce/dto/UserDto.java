@@ -1,6 +1,6 @@
 package com.kodilla.ecommerce.dto;
 
-import com.kodilla.ecommerce.dto.enums.StatusUser;
+import com.kodilla.ecommerce.domain.enums.StatusUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
