@@ -1,7 +1,7 @@
 package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.controller.enums.StatusOrder;
-import com.kodilla.ecommerce.dto.OrderItem;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.OrderDto;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,8 @@ public class OrderController {
                 .groupId(1L)
                 .build());
 
-        OrderItem orderItem = OrderItem.builder()
+        OrderItemDto orderItemDto = OrderItemDto.builder()
+                .id(1L)
                 .product(products)
                 .quantity(3)
                 .totalPrice(new BigDecimal(300))
@@ -34,7 +35,7 @@ public class OrderController {
 
         return Arrays.asList(OrderDto.builder()
                 .id(1L)
-                .items(orderItem)
+                .items(orderItemDto)
                 .number("1")
                 .status(StatusOrder.IN_PROGRESS)
                 .shippingAddress("81-155 Gdynia, Kościuszki 1/2")

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class OrderDto {
     private Long id;
-    private OrderItem items;
+    private OrderItemDto items;
     private String number;
     private StatusOrder status;
     private String shippingAddress;

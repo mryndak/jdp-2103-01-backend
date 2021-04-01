@@ -13,7 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderItem {
+public class OrderItemDto {
+    private Long id;
     private List<Product> product;
     private int quantity;
     private BigDecimal totalPrice;
