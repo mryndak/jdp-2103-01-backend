@@ -14,6 +14,8 @@ public class UserDto {
 
     private Long id;
     private String username;
-    private String status;
+    private Status status;
     private Long userKey;
+
+    public enum Status{BLOCKED_USER, ACTIVE_USER};
 }

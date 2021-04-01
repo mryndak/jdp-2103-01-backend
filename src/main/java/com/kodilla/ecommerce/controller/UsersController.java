@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping("/v1/users")
-@RequiredArgsConstructor
+@RequestMapping(value = "/v1/users", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class UsersController {
 
     @GetMapping
@@ -20,18 +21,30 @@ public class UsersController {
 
     @GetMapping(value = "/{userId}")
     public UserDto getUser(@PathVariable Long userId) {
-        return new UserDto(1L,"Test User", "1", 10000L);
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(UserDto.Status.ACTIVE_USER)
+                .userKey(10000L)
+                .build();
     }
 
     @PutMapping
     public void blockUser(@RequestBody UserDto userDto){
-        userDto.setStatus("0");
+        userDto.setStatus(UserDto.Status.BLOCKED_USER);
+    }
+
+    @PutMapping
+    public void generateUserKey(@RequestBody UserDto userDto){
+        userDto.setUserKey(10001L);
     }
 
     @PostMapping(value = "createUser")
     public void createUser(@RequestBody UserDto userDto) {
 
     }
+
+
 
 
 
