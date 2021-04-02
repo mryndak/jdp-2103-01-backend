@@ -18,7 +18,7 @@ public class OrderController {
 
     @GetMapping
     public List<OrderDto> getOrders() {
-        ProductDto products = ProductDto.builder()
+        ProductDto productDto = ProductDto.builder()
                 .id(1L)
                 .name("kurtka zimowa")
                 .description("")
@@ -28,7 +28,7 @@ public class OrderController {
 
         List<OrderItemDto> orderItemDto = Arrays.asList(OrderItemDto.builder()
                 .id(1L)
-                .product(products)
+                .productId(productDto)
                 .quantity(3)
                 .totalPrice(new BigDecimal(300))
                 .build());
