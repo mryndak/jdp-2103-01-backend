@@ -45,11 +45,11 @@ public class UsersController {
                 .build();
     }
 
-    @PutMapping("/{id}")
-    public UserDto generateUserKey(@PathVariable Long id){
+    @PutMapping("/{username}/key")
+    public UserDto generateUserKey(@PathVariable String username){
         return UserDto.builder()
                 .id(1L)
-                .username("Test User")
+                .username(username)
                 .status(StatusUser.ACTIVE_USER)
                 .userKey(10001L)
                 .build();
@@ -64,10 +64,4 @@ public class UsersController {
                 .userKey(10000L)
                 .build();
     }
-
-
-
-
-
-
 }
