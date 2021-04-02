@@ -23,18 +23,21 @@ public class Product {
     @Id
     @GeneratedValue
     private Long id;
-    
+
+    @NotNull
     @Size(min = 4, max = 50)
     private String name;
 
     @Size(max = 1000)
     private String description;
 
+    @NotNull
     @DecimalMin(value = "1.0")
     private BigDecimal price;
 
-    @Column(name = "group_id")
-    private Long groupId;
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "group_id")
+    private Group group;
 
 }
 
