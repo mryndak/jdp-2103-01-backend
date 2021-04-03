@@ -19,7 +19,7 @@ public class GroupTest {
     private GroupRepository groupRepository;
 
     @Test
-    public void SaveGroup() {
+    public void testSaveGroup() {
 
         //Given
         Group groupTest1 = new Group();
@@ -35,7 +35,7 @@ public class GroupTest {
     }
 
     @Test
-    public void GroupSetName() {
+    public void testSetNameGroup() {
         //Given
         Group groupTest2 = new Group();
         groupTest2.setName("Obuwie");
