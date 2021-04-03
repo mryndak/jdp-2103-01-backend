@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,10 +30,11 @@ public class GroupTest {
         //When
         groupRepository.save(groupTest1);
         Long groupTest1Id = groupTest1.getGroupId();
+        Optional<Group> testGroupId = groupRepository.findById(groupTest1Id);
         //Then
         assertTrue(groupRepository.existsById(groupTest1Id));
-
-        //Clean-up:
+        assertTrue(testGroupId.isPresent());
+        //Clean-up
         groupRepository.deleteById(groupTest1Id);
     }
 
