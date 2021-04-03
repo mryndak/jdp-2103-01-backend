@@ -7,46 +7,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+
 public class GroupTest {
 
     @Autowired
     private GroupRepository groupRepository;
 
-    Group groupTest = new Group();
-
     @Test
-    public void SaveGroup() {
+    public void testSaveGroup() {
+
         //Given
-        groupTest.setName("Save group test");
-
+        Group groupTest1 = new Group();
+        groupTest1.setName("Odzież");
         //When
-        groupRepository.save(groupTest);
-        Long groupTestId = groupTest.getGroupId();
-
+        groupRepository.save(groupTest1);
+        Long groupTest1Id = groupTest1.getGroupId();
         //Then
-        assertTrue(groupRepository.existsById(groupTestId));
+        assertTrue(groupRepository.existsById(groupTest1Id));
 
-        //CleanUp
-        groupRepository.deleteById(groupTestId);
+        //Clean-up:
+        groupRepository.deleteById(groupTest1Id);
     }
 
     @Test
-    public void SetNameGroup() {
+    public void testSetNameGroup() {
         //Given
-        String name = "Test";
-        groupTest.setName(name);
-
+        Group groupTest2 = new Group();
+        groupTest2.setName("Obuwie");
         //When
-        groupRepository.save(groupTest);
-
+        groupRepository.save(groupTest2);
+        String name = groupTest2.getName();
         //Then
-        assertEquals(name, groupTest.getName());
-
+        assertEquals("Obuwie", name);
         //CleanUp
         groupRepository.deleteAll();
     }
+
 }
