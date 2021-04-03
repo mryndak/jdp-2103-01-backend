@@ -8,5 +8,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface GroupRepository extends CrudRepository<Group, Long> {}
+public interface GroupRepository extends CrudRepository<Group, Long> {
+
+}
 
