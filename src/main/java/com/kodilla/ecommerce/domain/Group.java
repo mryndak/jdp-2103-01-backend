@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Builder
 @Data
 @Entity
-@Table(name = "groups")
+@Table(name = "products_groups")
 public class Group {
 
     @NotNull
