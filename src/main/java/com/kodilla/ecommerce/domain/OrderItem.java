@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
@@ -16,28 +16,26 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @Entity
-@Table(name = "products")
-public class Product {
-
+@Table(name = "orders_items")
+public class OrderItem {
     @NotNull
     @Id
     @GeneratedValue
     private Long id;
 
     @NotNull
-    @Size(min = 4, max = 50)
-    private String name;
-
-    @Size(max = 1000)
-    private String description;
+    @Min(1)
+    private int quantity;
 
     @NotNull
     @DecimalMin(value = "1.0")
-    private BigDecimal price;
+    private BigDecimal totalPrice;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product productId;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order orderId;
 }
-
