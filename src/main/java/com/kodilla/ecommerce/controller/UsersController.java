@@ -1,11 +1,9 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.dto.ExampleDto;
+import com.kodilla.ecommerce.domain.enums.StatusUser;
 import com.kodilla.ecommerce.dto.UserDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,40 +19,50 @@ public class UsersController {
                 UserDto.builder()
                         .id(1L)
                         .username("Test User")
-                        .status(UserDto.Status.ACTIVE_USER)
+                        .status(StatusUser.ACTIVE_USER)
                         .userKey(10000L)
                         .build()
         );
     }
 
-    @GetMapping(value = "/{userId}")
-    public UserDto getUser(@PathVariable Long userId) {
+    @GetMapping("/{id}")
+    public UserDto getUser(@PathVariable Long id) {
         return UserDto.builder()
                 .id(1L)
                 .username("Test User")
-                .status(UserDto.Status.ACTIVE_USER)
+                .status(StatusUser.ACTIVE_USER)
                 .userKey(10000L)
                 .build();
     }
 
-    @PutMapping(value = "blockUser")
-    public void blockUser(@RequestBody UserDto userDto){
-        userDto.setStatus(UserDto.Status.BLOCKED_USER);
+
+    @PutMapping("/block")
+    public UserDto blockUser(@RequestBody UserDto userDto){
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(StatusUser.BLOCKED_USER)
+                .userKey(10000L)
+                .build();
     }
 
-    @PutMapping(value = "generateUserKey")
-    public void generateUserKey(@RequestBody UserDto userDto){
-        userDto.setUserKey(10001L);
+    @PutMapping("/{username}/key")
+    public UserDto generateUserKey(@PathVariable String username){
+        return UserDto.builder()
+                .id(1L)
+                .username(username)
+                .status(StatusUser.ACTIVE_USER)
+                .userKey(10001L)
+                .build();
     }
 
-    @PostMapping(value = "createUser")
-    public void createUser(@RequestBody UserDto userDto) {
-
+    @PostMapping
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return UserDto.builder()
+                .id(1L)
+                .username("Test User")
+                .status(StatusUser.ACTIVE_USER)
+                .userKey(10000L)
+                .build();
     }
-
-
-
-
-
-
 }

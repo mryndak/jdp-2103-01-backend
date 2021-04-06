@@ -1,20 +1,20 @@
 package com.kodilla.ecommerce.dto;
 
-import com.kodilla.ecommerce.domain.enums.StatusUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class UserDto {
-
+public class OrderItemDto {
     private Long id;
-    private String username;
-    private StatusUser status;
-    private Long userKey;
-
+    private int quantity;
+    private BigDecimal totalPrice;
+    private ProductDto productId;
+    private OrderDto orderId;
 }
