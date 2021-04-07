@@ -52,4 +52,30 @@ public class GroupTest {
         groupRepository.deleteAll();
     }
 
+    @Test
+    public void testSetProducts() {
+        //Given
+        Group groupTest1 = new Group();
+        Group groupTest2 = new Group();
+        Product product1 = new Product();
+        product1.setName("product 1");
+        product1.setGroup(groupTest1);
+        Product product2 = new Product();
+        product2.setName("product 2");
+        product2.setGroup(groupTest2);
+
+        //When
+        groupTest1.getProducts().add(product1);
+        groupTest2.getProducts().add(product2);
+
+        Group savedGroupTest1 = groupRepository.save(groupTest1);
+        Group savedGroupTest2 = groupRepository.save(groupTest2);
+        //Then
+        assertTrue(savedGroupTest1.getProducts().contains(product1));
+        assertTrue(savedGroupTest2.getProducts().contains(product2));
+
+        //CleanUp
+        groupRepository.deleteAll();
+    }
+
 }
