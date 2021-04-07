@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -23,18 +24,18 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Builder.Default
     @OneToMany(
             targetEntity = CartItem.class,
             mappedBy = "cart",
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    private List<CartItem> items;
+    private List<CartItem> items = new ArrayList<>();
 
     @Transient
     private BigDecimal totalPrice;
