@@ -17,21 +17,21 @@ public class CartController {
 
     @GetMapping
     public List<CartDto> getCarts() {
-    ProductDto productDto = ProductDto.builder()
-            .id(1L)
-            .name("kurtka zimowa")
-            .description("")
-            .price(new BigDecimal(10))
-            .build();
+        ProductDto productDto = ProductDto.builder()
+                .id(1L)
+                .name("kurtka zimowa")
+                .description("")
+                .price(new BigDecimal(10))
+                .build();
 
-    List<CartItemDto> cartItemDto = Arrays.asList(CartItemDto.builder()
-            .id(1L)
-            .cartId(1L)
-            .productId(1L)
-            .quantity(10)
-            .totalPrice(new BigDecimal(10))
-            .build()
-    );
+        List<CartItemDto> cartItemDto = Arrays.asList(CartItemDto.builder()
+                .id(1L)
+                .cartId(1L)
+                .productId(1L)
+                .quantity(10)
+                .totalPrice(new BigDecimal(10))
+                .build()
+        );
 
         return Arrays.asList(
                 CartDto.builder()
@@ -56,16 +56,19 @@ public class CartController {
                 .build();
     }
 
-    @PutMapping
-    public CartDto addProductToCart(@RequestBody final CartDto cartDto) {
+    @PutMapping("/add")
+    public CartDto addItemToCart(@RequestBody final CartItemDto cartItemDto) {
         return CartDto.builder()
                 .id(1L)
                 .userId(1L)
                 .build();
     }
 
-    @DeleteMapping("/{productId}/delete")
-    public void deleteProductFromCart(@PathVariable Long productId){
+    @PutMapping("/remove")
+    public CartDto deleteItemFromCart(@RequestBody final CartItemDto cartItemDto) {
+        return CartDto.builder()
+                .id(1L)
+                .build();
     }
 
     @DeleteMapping("/{id}")
