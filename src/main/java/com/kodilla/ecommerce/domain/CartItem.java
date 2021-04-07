@@ -16,26 +16,28 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @Entity
-@Table(name = "orders_items")
-public class OrderItem {
+@Table(name = "cart_items")
+public class CartItem {
+
     @NotNull
     @Id
     @GeneratedValue
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product productId;
+
     @NotNull
     @Min(1)
     private int quantity;
 
-    @NotNull
+    @Transient
     @DecimalMin(value = "1.0")
-    private BigDecimal price;
+    private BigDecimal totalPrice;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "product_id")
-    private Product product;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "order_id")
-    private Order order;
 }

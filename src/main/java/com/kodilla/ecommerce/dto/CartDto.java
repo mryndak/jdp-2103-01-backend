@@ -1,6 +1,5 @@
 package com.kodilla.ecommerce.dto;
 
-import com.kodilla.ecommerce.domain.enums.StatusUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,18 +8,14 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class UserDto {
-
-    private Long id;
-    private String username;
-    private StatusUser status;
-    private Long userKey;
+public class CartDto {
     @Builder.Default
-    private List<OrderDto> orders = new ArrayList<>();
-    private Long cartId;
+    private List<CartItemDto> items = new ArrayList<>();
+    private Long id;
+    private Long userId;
 
 }
