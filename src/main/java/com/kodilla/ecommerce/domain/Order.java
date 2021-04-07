@@ -1,7 +1,6 @@
 package com.kodilla.ecommerce.domain;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

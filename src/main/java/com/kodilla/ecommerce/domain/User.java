@@ -1,8 +1,6 @@
 package com.kodilla.ecommerce.domain;
 
-import com.kodilla.ecommerce.domain.enums.StatusOrder;
 import com.kodilla.ecommerce.domain.enums.StatusUser;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class User {
     @NotNull
     private Long userKey;
 
+    @Builder.Default
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "user",
@@ -46,12 +46,8 @@ public class User {
     )
     private List<Order> orders = new ArrayList<>();
 
-    /* Przygotowane pod nieutworzoną klasę Cart (* usunąć, jeżeli niepotrzebne)
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id")
     private Cart cart;
-
-    */
 
 }

@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,5 +19,8 @@ public class UserDto {
     private String username;
     private StatusUser status;
     private Long userKey;
+    @Builder.Default
+    private List<OrderDto> orders = new ArrayList<>();
+    private Long cartId;
 
 }
