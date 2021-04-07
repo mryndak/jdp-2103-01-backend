@@ -45,5 +45,7 @@ public class Order {
     @NotNull
     private LocalDateTime dateOfCreation;
 
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
