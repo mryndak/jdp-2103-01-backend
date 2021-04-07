@@ -45,6 +45,7 @@ public class Order {
     @NotNull
     private LocalDateTime dateOfCreation;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

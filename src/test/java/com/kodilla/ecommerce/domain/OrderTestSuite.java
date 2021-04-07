@@ -1,6 +1,7 @@
 package com.kodilla.ecommerce.domain;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
+import com.kodilla.ecommerce.domain.enums.StatusUser;
 import com.kodilla.ecommerce.repository.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +27,7 @@ public class OrderTestSuite {
     private final OrderItem orderItemTest = new OrderItem();
     private final List<OrderItem> orderItemListTest = new ArrayList<>();
     private final Order orderTest = new Order();
+    private final User userTest = new User();
 
     @Test
     void testSaveOrder() {
@@ -49,7 +51,15 @@ public class OrderTestSuite {
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
         orderTest.setDateOfCreation(LocalDateTime.now());
-        orderTest.setUserId(1L);
+        orderTest.setUser(userTest);
+
+        List<Order> orderListTest = new ArrayList<>();
+        orderListTest.add(orderTest);
+
+        userTest.setName("Piotr");
+        userTest.setStatus(StatusUser.ACTIVE_USER);
+        userTest.setOrders(orderListTest);
+        userTest.setUserKey(59403L);
         //When
         orderRepository.save(orderTest);
         Long orderTestId = orderTest.getId();
@@ -87,10 +97,9 @@ public class OrderTestSuite {
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
         orderTest.setDateOfCreation(LocalDateTime.now());
-        orderTest.setUserId(1L);
+        orderTest.setUser(userTest);
         //When
         orderTest.setStatus(StatusOrder.IN_PROGRESS);
-        orderTest.setUserId(2L);
         orderTest.setShippingAddress("Test - update shipping address");
         orderRepository.save(orderTest);
         Long orderTestId = orderTest.getId();
@@ -100,7 +109,6 @@ public class OrderTestSuite {
             Optional<Order> readOrderId = orderRepository.findById(orderTestId);
             assertTrue(readOrderId.isPresent());
             assertEquals(StatusOrder.IN_PROGRESS, orderTest.getStatus());
-            assertEquals(2L, orderTest.getUserId());
             assertEquals("Test - update shipping address", orderTest.getShippingAddress());
         } finally {
             //CleanUp
@@ -130,7 +138,7 @@ public class OrderTestSuite {
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
         orderTest.setDateOfCreation(LocalDateTime.now());
-        orderTest.setUserId(1L);
+        orderTest.setUser(userTest);
 
         orderRepository.save(orderTest);
         //When
