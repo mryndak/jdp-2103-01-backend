@@ -25,8 +25,11 @@ public class CartController {
             .build();
 
     List<CartItemDto> cartItemDto = Arrays.asList(CartItemDto.builder()
+            .id(1L)
+            .cartId(1L)
             .productId(1L)
             .quantity(10)
+            .totalPrice(new BigDecimal(10))
             .build()
     );
 
