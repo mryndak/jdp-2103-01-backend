@@ -1,7 +1,6 @@
 package com.kodilla.ecommerce.domain;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +26,7 @@ public class Order {
     @NotEmpty
     @OneToMany(
             targetEntity = OrderItem.class,
-            mappedBy = "orderId",
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -44,7 +43,7 @@ public class Order {
     private String shippingAddress;
 
     @NotNull
-    private LocalDateTime date;
+    private LocalDateTime dateOfCreation;
 
     @Column(name = "user_id")
     private Long userId;

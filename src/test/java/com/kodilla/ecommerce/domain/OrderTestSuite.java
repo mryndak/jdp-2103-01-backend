@@ -38,9 +38,9 @@ public class OrderTestSuite {
         productTest.setGroup(groupTest);
 
         orderItemTest.setQuantity(1);
-        orderItemTest.setTotalPrice(new BigDecimal(10));
-        orderItemTest.setProductId(productTest);
-        orderItemTest.setOrderId(orderTest);
+        orderItemTest.setPrice(new BigDecimal(10));
+        orderItemTest.setProduct(productTest);
+        orderItemTest.setOrder(orderTest);
 
         orderItemListTest.add(orderItemTest);
 
@@ -48,7 +48,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        orderTest.setDateOfCreation(LocalDateTime.now());
         orderTest.setUserId(1L);
         //When
         orderRepository.save(orderTest);
@@ -76,9 +76,9 @@ public class OrderTestSuite {
         productTest.setGroup(groupTest);
 
         orderItemTest.setQuantity(1);
-        orderItemTest.setTotalPrice(new BigDecimal(10));
-        orderItemTest.setProductId(productTest);
-        orderItemTest.setOrderId(orderTest);
+        orderItemTest.setPrice(new BigDecimal(10));
+        orderItemTest.setProduct(productTest);
+        orderItemTest.setOrder(orderTest);
 
         orderItemListTest.add(orderItemTest);
 
@@ -86,7 +86,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        orderTest.setDateOfCreation(LocalDateTime.now());
         orderTest.setUserId(1L);
         //When
         orderTest.setStatus(StatusOrder.IN_PROGRESS);
@@ -119,9 +119,9 @@ public class OrderTestSuite {
         productTest.setGroup(groupTest);
 
         orderItemTest.setQuantity(1);
-        orderItemTest.setTotalPrice(new BigDecimal(10));
-        orderItemTest.setProductId(productTest);
-        orderItemTest.setOrderId(orderTest);
+        orderItemTest.setPrice(new BigDecimal(10));
+        orderItemTest.setProduct(productTest);
+        orderItemTest.setOrder(orderTest);
 
         orderItemListTest.add(orderItemTest);
 
@@ -129,7 +129,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        orderTest.setDateOfCreation(LocalDateTime.now());
         orderTest.setUserId(1L);
 
         orderRepository.save(orderTest);
