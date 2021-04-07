@@ -47,7 +47,7 @@ public class ProductTest {
         assertEquals("Save Product Test",testProduct.get(0).getName());
         assertEquals("Test Description",testProduct.get(0).getDescription());
         assertEquals(new BigDecimal("16.00"), testProduct.get(0).getPrice());
-        //assertEquals(groupTest, testProduct.get(0).getGroup());
+        assertEquals(groupTest, testProduct.get(0).getGroup());
         assertEquals("Test Group Name", testProduct.get(0).getGroup().getName());
         //CleanUp
         productRepository.deleteById(productTestId);
@@ -80,7 +80,7 @@ public class ProductTest {
         assertEquals("Update",testProduct.get(0).getName());
         assertEquals("Test Description",testProduct.get(0).getDescription());
         assertEquals(new BigDecimal("16.00"), testProduct.get(0).getPrice());
-        //assertEquals(groupTest, testProduct.get(0).getGroup());
+        assertEquals(groupTest, testProduct.get(0).getGroup());
         //CleanUp
         productRepository.deleteById(productTestId);
 
