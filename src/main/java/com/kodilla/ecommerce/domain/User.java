@@ -38,6 +38,7 @@ public class User {
     @NotNull
     private Long userKey;
 
+    @Builder.Default
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "user",
