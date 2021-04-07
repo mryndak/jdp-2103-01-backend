@@ -55,9 +55,5 @@ public class CartController {
     @DeleteMapping("/{id}")
     public void deleteCart(@PathVariable final Long id) {
     }
-
-
-
-
 }
 
