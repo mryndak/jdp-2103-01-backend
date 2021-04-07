@@ -35,7 +35,6 @@ public class UsersController {
                 .build();
     }
 
-
     @PutMapping("/block")
     public UserDto blockUser(@RequestBody UserDto userDto){
         return UserDto.builder()
