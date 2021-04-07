@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @Builder
 public class CartDto {
+    @Builder.Default
     private List<CartItemDto> items = new ArrayList<>();
     private Long id;
     private Long userId;
