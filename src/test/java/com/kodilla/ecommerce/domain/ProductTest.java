@@ -2,7 +2,7 @@ package com.kodilla.ecommerce.domain;
 
 
 import com.kodilla.ecommerce.repository.ProductRepository;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +22,7 @@ public class ProductTest {
     private ProductRepository productRepository;
 
     @Test
+    @Disabled
     public void testSaveProduct() {
         //Given
         Product productTest = new Product();
@@ -53,6 +54,7 @@ public class ProductTest {
     }
 
     @Test
+    @Disabled
     public void testUpdateProduct() {
         //Given
         Product productTest = new Product();
