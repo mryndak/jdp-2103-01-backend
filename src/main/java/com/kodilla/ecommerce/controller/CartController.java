@@ -1,8 +1,11 @@
 package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.dto.CartDto;
+import com.kodilla.ecommerce.dto.CartItemDto;
+import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,13 +17,24 @@ public class CartController {
 
     @GetMapping
     public List<CartDto> getCarts() {
+    ProductDto productDto = ProductDto.builder()
+            .id(1L)
+            .name("kurtka zimowa")
+            .description("")
+            .price(new BigDecimal(10))
+            .build();
+
+    List<CartItemDto> cartItemDto = Arrays.asList(CartItemDto.builder()
+            .productId(1L)
+            .quantity(10)
+            .build()
+    );
+
         return Arrays.asList(
                 CartDto.builder()
-                .id(1L)
-                .productId(1L)
-                .userId(1L)
-                .quantity(10)
-                .build()
+                        .id(1L)
+                        .userId(1L)
+                        .build()
         );
     }
 
@@ -35,16 +49,15 @@ public class CartController {
     public CartDto createCart(@RequestBody final CartDto cartDto) {
         return CartDto.builder()
                 .id(1L)
-                .productId(1L)
                 .userId(1L)
-                .quantity(10)
                 .build();
     }
 
     @PutMapping
     public CartDto addProductToCart(@RequestBody final CartDto cartDto) {
         return CartDto.builder()
-                .productId(1L)
+                .id(1L)
+                .userId(1L)
                 .build();
     }
 
