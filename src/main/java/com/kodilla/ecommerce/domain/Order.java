@@ -26,7 +26,7 @@ public class Order {
     @NotEmpty
     @OneToMany(
             targetEntity = OrderItem.class,
-            mappedBy = "orderId",
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
@@ -43,9 +43,9 @@ public class Order {
     private String shippingAddress;
 
     @NotNull
-    private LocalDateTime date;
+    private LocalDateTime dateOfCreation;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 }
