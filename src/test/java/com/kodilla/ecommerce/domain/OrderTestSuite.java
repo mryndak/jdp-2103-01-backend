@@ -63,16 +63,12 @@ public class OrderTestSuite {
         //When
         orderRepository.save(orderTest);
         Long orderTestId = orderTest.getId();
-
-        try {
-            //Then
-            Optional<Order> readOrderId = orderRepository.findById(orderTestId);
-            assertTrue(readOrderId.isPresent());
-            assertNotEquals(StatusOrder.IN_PROGRESS, orderTest.getStatus());
-        } finally {
-            //CleanUp
-            orderRepository.deleteById(orderTestId);
-        }
+        //Then
+        Optional<Order> readOrderId = orderRepository.findById(orderTestId);
+        assertTrue(readOrderId.isPresent());
+        assertNotEquals(StatusOrder.IN_PROGRESS, orderTest.getStatus());
+        //CleanUp
+        orderRepository.deleteById(orderTestId);
     }
 
     @Test
@@ -103,17 +99,13 @@ public class OrderTestSuite {
         orderTest.setShippingAddress("Test - update shipping address");
         orderRepository.save(orderTest);
         Long orderTestId = orderTest.getId();
-
-        try {
-            //Then
-            Optional<Order> readOrderId = orderRepository.findById(orderTestId);
-            assertTrue(readOrderId.isPresent());
-            assertEquals(StatusOrder.IN_PROGRESS, orderTest.getStatus());
-            assertEquals("Test - update shipping address", orderTest.getShippingAddress());
-        } finally {
-            //CleanUp
-            orderRepository.deleteById(orderTestId);
-        }
+        //Then
+        Optional<Order> readOrderId = orderRepository.findById(orderTestId);
+        assertTrue(readOrderId.isPresent());
+        assertEquals(StatusOrder.IN_PROGRESS, orderTest.getStatus());
+        assertEquals("Test - update shipping address", orderTest.getShippingAddress());
+        //CleanUp
+        orderRepository.deleteById(orderTestId);
     }
 
     @Test
