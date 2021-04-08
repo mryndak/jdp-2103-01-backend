@@ -28,14 +28,12 @@ public class Group {
     @Size(min = 4, max = 50)
     private String name;
 
-
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     @Builder.Default
     private List<Product> products = new ArrayList<>();
 }
