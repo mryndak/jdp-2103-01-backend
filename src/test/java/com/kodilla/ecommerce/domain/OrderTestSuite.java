@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class OrderTestSuite {
+
     @Autowired
     private OrderRepository orderRepository;
     private final Product productTest = new Product();
