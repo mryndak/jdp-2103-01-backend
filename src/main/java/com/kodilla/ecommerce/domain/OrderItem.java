@@ -29,13 +29,13 @@ public class OrderItem {
 
     @NotNull
     @DecimalMin(value = "1.0")
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id")
-    private Product productId;
+    private Product product;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
-    private Order orderId;
+    private Order order;
 }
