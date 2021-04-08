@@ -94,6 +94,8 @@ public class OrderTestSuite {
         orderTest.setShippingAddress("Test - shipping address");
         orderTest.setDateOfCreation(LocalDateTime.now());
         orderTest.setUser(userTest);
+
+        orderRepository.save(orderTest);
         //When
         orderTest.setStatus(StatusOrder.IN_PROGRESS);
         orderTest.setShippingAddress("Test - update shipping address");
