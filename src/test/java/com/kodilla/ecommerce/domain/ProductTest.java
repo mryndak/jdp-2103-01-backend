@@ -83,7 +83,6 @@ public class ProductTest {
         assertEquals(groupTest, testProduct.get(0).getGroup());
         //CleanUp
         productRepository.deleteById(productTestId);
-
     }
 
     @Test
@@ -108,5 +107,4 @@ public class ProductTest {
         //Then
         assertFalse(readProduct.isPresent());
     }
-
 }

@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Transactional
 @Repository
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
+
 }

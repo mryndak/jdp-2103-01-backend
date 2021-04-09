@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Repository
 @Transactional
+@Repository
 public interface GroupRepository extends CrudRepository<Group, Long> {
 
 }
