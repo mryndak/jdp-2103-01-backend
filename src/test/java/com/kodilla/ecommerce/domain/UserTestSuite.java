@@ -17,16 +17,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class UserTestSuite {
+
     @Autowired
     private UserRepository userRepository;
-    private final Order orderTest = new Order();
-    private final List<Order> orderListTest = new ArrayList<>();
-    private final User userTest = new User();
-    private final Cart cartTest = new Cart();
 
     @Test
     void testSaveUser() {
         //Given
+        Order orderTest = new Order();
+        List<Order> orderListTest = new ArrayList<>();
+        User userTest = new User();
+        Cart cartTest = new Cart();
+
         orderTest.setNumber("123");
 
         orderListTest.add(orderTest);
@@ -56,6 +58,11 @@ public class UserTestSuite {
     @Test
     void testBlockUser() {
         //Given
+        Order orderTest = new Order();
+        List<Order> orderListTest = new ArrayList<>();
+        User userTest = new User();
+        Cart cartTest = new Cart();
+
         orderTest.setNumber("123");
 
         orderListTest.add(orderTest);
@@ -84,6 +91,11 @@ public class UserTestSuite {
     @Test
     void testGenerateUserKey() {
         //Given
+        Order orderTest = new Order();
+        List<Order> orderListTest = new ArrayList<>();
+        User userTest = new User();
+        Cart cartTest = new Cart();
+
         orderTest.setNumber("123");
 
         orderListTest.add(orderTest);
