@@ -10,5 +10,4 @@ public class GroupDto {
 
     private Long groupId;
     private String name;
-
 }

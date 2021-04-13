@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "orders_items")
 public class OrderItem {
+
     @NotNull
     @Id
     @GeneratedValue

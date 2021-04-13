@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-
 public class GroupTest {
 
     @Autowired
@@ -23,7 +21,6 @@ public class GroupTest {
 
     @Test
     public void testSaveGroup() {
-
         //Given
         Group groupTest1 = new Group();
         groupTest1.setName("Odzież");
@@ -77,5 +74,4 @@ public class GroupTest {
         //CleanUp
         groupRepository.deleteAll();
     }
-
 }

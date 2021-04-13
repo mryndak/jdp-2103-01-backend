@@ -38,6 +38,4 @@ public class Product {
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "group_id")
     private Group group;
-
 }
-
