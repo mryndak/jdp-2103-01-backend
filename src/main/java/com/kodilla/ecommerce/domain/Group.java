@@ -36,4 +36,5 @@ public class Group {
     )
     @Builder.Default
     private List<Product> products = new ArrayList<>();
+
 }
