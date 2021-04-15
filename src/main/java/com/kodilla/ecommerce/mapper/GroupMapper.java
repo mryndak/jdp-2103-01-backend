@@ -5,43 +5,28 @@ import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.dto.GroupDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
-@Component
-public class GroupMapper {
+@Mapper(componentModel = "spring")
+public interface GroupMapper {
 
-    public Group mapToGroup(final GroupDto groupDto) {
+    @Mapping(target = "products", ignore = true)
+    Group mapToGroup(final GroupDto groupDto);
 
-        List<Product> products = new ArrayList<>();
+//    @Mapping(target = "products", ignore = true)
+    Group mapToGroup(final GroupDto groupDto, final List<Product> products);
 
-        return new Group(
-                groupDto.getGroupId(),
-                groupDto.getName(),
-                products);
-    }
+    @Mapping(target = "products", ignore = true)
+    GroupDto mapToGroupDto(final Group group);
 
-    public GroupDto mapToGroupDto(final Group group) {
-        List<Product> products = group.getProducts();
-        List<ProductDto> productsDto = new ArrayList<>();
-        for(Product product: products){
-            productsDto.add(new ProductDto(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getGroup().getGroupId()));
-        }
+    GroupDto mapToGroupDto(final Group group, final List<ProductDto> products);
 
-        return new GroupDto(
-                group.getGroupId(),
-                group.getName(),
-                productsDto);
-    }
-
-    public List<GroupDto> mapToGroupDtoList(final List<Group> groupList) {
-        return groupList.stream()
-                .map(this::mapToGroupDto)
-                .collect(Collectors.toList());
-    }
+    List<GroupDto> mapToGroupDtoList(final List<Group> groupList);
 
 }
