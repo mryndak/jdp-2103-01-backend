@@ -66,4 +66,8 @@ public class GroupService {
         }
         return Optional.empty();
     }
+
+    public void deleteGroup(Long groupId) {
+        groupRepository.deleteById(groupId);
+    }
 }

@@ -18,7 +18,6 @@ public class GroupController {
 
     private final GroupService groupService;
 
-
     @GetMapping("/{groupId}")
     public GroupDto getGroup(@PathVariable Long groupId)  {
         return groupService.getGroupById(groupId)
@@ -45,6 +44,11 @@ public class GroupController {
     public GroupDto updateGroup(@RequestBody final GroupDto groupDto) {
         return groupService.updateGroup(groupDto)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteGroup(@PathVariable Long groupId){
+        groupService.deleteGroup(groupId);
     }
 
 }
