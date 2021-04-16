@@ -16,7 +16,7 @@ import java.util.List;
 public class UserDto {
 
     private Long id;
-    private String username;
+    private String name;
     private StatusUser status;
     private Long userKey;
     @Builder.Default
