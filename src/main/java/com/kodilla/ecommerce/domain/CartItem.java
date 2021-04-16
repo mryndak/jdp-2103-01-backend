@@ -30,7 +30,7 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product productId;
+    private Product product;
 
     @NotNull
     @Min(1)
