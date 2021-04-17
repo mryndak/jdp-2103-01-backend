@@ -1,6 +1,5 @@
 package com.kodilla.ecommerce.dto;
 
-import com.kodilla.ecommerce.domain.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +14,8 @@ import java.util.List;
 @Builder
 public class CartDto {
 
-    @Builder.Default
-    private List<CartItemDto> items = new ArrayList<>();
     private Long id;
     private Long userId;
+    @Builder.Default
+    private List<CartItemDto> items = new ArrayList<>();
 }
