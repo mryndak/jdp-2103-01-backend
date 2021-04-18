@@ -1,56 +1,68 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.CartDto;
 import com.kodilla.ecommerce.dto.CartItemDto;
-import com.kodilla.ecommerce.dto.GroupDto;
-import com.kodilla.ecommerce.service.CartService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping(value = "/v1/carts", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class CartController {
 
-    private final CartService cartService;
-
     @GetMapping
     public List<CartDto> getCarts() {
-        return cartService.getAllCarts();
+        ProductDto productDto = ProductDto.builder()
+                .id(1L)
+                .name("kurtka zimowa")
+                .description("")
+                .price(new BigDecimal(10))
+                .build();
+
+        List<CartItemDto> cartItemDto = Arrays.asList(CartItemDto.builder()
+                .id(1L)
+                .cartId(1L)
+                .productId(1L)
+                .quantity(10)
+                .totalPrice(new BigDecimal(10))
+                .build()
+        );
+
+        return Arrays.asList(
+                CartDto.builder()
+                        .id(1L)
+                        .userId(1L)
+                        .build()
+        );
     }
 
     @GetMapping("/{id}")
     public CartDto getCart(@PathVariable Long id) {
-        return cartService.getCartById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cart with id: " + "dosent exist."));
+        return CartDto.builder()
+                .id(1L)
+                .build();
     }
 
     @PostMapping
     public CartDto createCart(@RequestBody final CartDto cartDto) {
-        return cartService.saveCart(cartDto);
+        return CartDto.builder()
+                .id(1L)
+                .userId(1L)
+                .build();
     }
 
-
-
-
-
-//    @PutMapping("/add")
-//    public CartDto addItemToCart(@RequestBody final CartItemDto cartItemDto) {
-//        return CartDto.builder()
-//                .id(1L)
-//                .user(new User())
-//                .build();
-//    }
-
-
-
+    @PutMapping("/add")
+    public CartDto addItemToCart(@RequestBody final CartItemDto cartItemDto) {
+        return CartDto.builder()
+                .id(1L)
+                .userId(1L)
+                .build();
+    }
 
     @PutMapping("/remove")
     public CartDto deleteItemFromCart(@RequestBody final CartItemDto cartItemDto) {

@@ -2,13 +2,11 @@ package com.kodilla.ecommerce.service;
 
 import com.kodilla.ecommerce.domain.*;
 import com.kodilla.ecommerce.dto.CartDto;
-import com.kodilla.ecommerce.dto.GroupDto;
 import com.kodilla.ecommerce.mapper.CartMapper;
 import com.kodilla.ecommerce.repository.CartItemRepository;
 import com.kodilla.ecommerce.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,18 +39,6 @@ public class CartService {
         cartToSave = cartRepository.save(cartToSave);
         return cartMapper.mapToCartDto(cartToSave);
     }
-
-
-
-
-    ////////In progress...
-
-
-
-
-
-
-
 
     public void addItemToCart(Long cartId, Long productId) throws CartNotFoundException, ItemNotFoundException {
         Cart cartWithItemToAdd = cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);

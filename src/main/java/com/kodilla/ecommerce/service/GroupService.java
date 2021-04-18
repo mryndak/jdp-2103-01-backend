@@ -1,7 +1,6 @@
 package com.kodilla.ecommerce.service;
 
-import com.kodilla.ecommerce.domain.Group;
-import com.kodilla.ecommerce.domain.Product;
+import com.kodilla.ecommerce.domain.*;
 import com.kodilla.ecommerce.dto.GroupDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import com.kodilla.ecommerce.mapper.GroupMapper;
@@ -62,6 +61,7 @@ public class GroupService {
         Optional<Group> group = groupRepository.findById(groupDto.getGroupId());
         if(group.isPresent()) {
             group.ifPresent(g -> g.setName(groupDto.getName()));
+           groupRepository.save(group.get());
             return group.map(groupMapper::mapToGroupDto);
         }
         return Optional.empty();

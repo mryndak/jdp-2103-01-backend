@@ -46,7 +46,7 @@ public class GroupController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{groupId}")
     public void deleteGroup(@PathVariable Long groupId){
         groupService.deleteGroup(groupId);
     }
