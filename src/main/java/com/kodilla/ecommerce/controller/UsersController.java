@@ -2,13 +2,13 @@ package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.domain.enums.StatusUser;
 import com.kodilla.ecommerce.dto.UserDto;
+import com.kodilla.ecommerce.dto.creator.CreateUserDto;
 import com.kodilla.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -46,7 +46,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
+    public UserDto createUser(@RequestBody CreateUserDto userDto) {
         return userService.saveUser(userDto);
     }
 }

@@ -4,6 +4,7 @@ import com.kodilla.ecommerce.domain.Cart;
 import com.kodilla.ecommerce.domain.Order;
 import com.kodilla.ecommerce.domain.User;
 import com.kodilla.ecommerce.dto.UserDto;
+import com.kodilla.ecommerce.dto.creator.CreateUserDto;
 import com.kodilla.ecommerce.mapper.UserMapper;
 import com.kodilla.ecommerce.repository.CartRepository;
 import com.kodilla.ecommerce.repository.OrderRepository;
@@ -37,18 +38,12 @@ public class UserService {
                 .map(userMapper::mapToDto);
     }
 
-    public UserDto saveUser(final UserDto userDto) {
-        User user = userMapper.mapFromDto(userDto);
-        Optional<Cart> cart = cartRepository.findByUser(user);
-        if (cart.isPresent()){
-            Cart userCart = cart.get();
-            user.setCart(userCart);
-        } else {
-            user.setCart(Cart.builder()
-                    .user(user)
-                    .build());
-        }
-
+    public UserDto saveUser(final CreateUserDto userDto) {
+        User user = userMapper.mapFromCreateDto(userDto);
+        user.setId(0L);
+        user.setCart(Cart.builder()
+                .user(user)
+                .build());
         List<Order> orders = orderRepository.findByUser(user);
         user.setOrders(orders);
         user = userRepository.save(user);
@@ -60,11 +55,6 @@ public class UserService {
         if (user.isPresent()) {
             user.ifPresent(u -> {
                 u.setName(userDto.getName());
-                Optional<Cart> cart = cartRepository.findById(userDto.getCartId());
-                if (cart.isPresent()){
-                    Cart userCart = cart.get();
-                    u.setCart(userCart);
-                }
                 u.setOrders(orderRepository.findByUser(u));
                 u.setStatus(userDto.getStatus());
                 u.setUserKey(userDto.getUserKey());
