@@ -34,22 +34,16 @@ public class CartService {
                 .map(cartMapper::mapToCartDto);
     }
 
-    public CartDto saveCart(final CartDto cart) {
-        Cart cartToSave = cartMapper.mapToCart(cart);
-        cartToSave = cartRepository.save(cartToSave);
-        return cartMapper.mapToCartDto(cartToSave);
-    }
-
-    public void addItemToCart(Long cartId, Long productId) throws CartNotFoundException, ItemNotFoundException {
+    public void addItemToCart(Long cartId, Long cartItemId) throws CartNotFoundException, ItemNotFoundException {
         Cart cartWithItemToAdd = cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);
-        CartItem itemToAdd = cartItemRepository.findById(productId).orElseThrow(ItemNotFoundException::new);
+        CartItem itemToAdd = cartItemRepository.findById(cartItemId).orElseThrow(ItemNotFoundException::new);
         cartWithItemToAdd.getItems().add(itemToAdd);
         cartRepository.save(cartWithItemToAdd);
     }
 
-    public void removeProductFromCart(Long cartId, Long productId) throws CartNotFoundException, ItemNotFoundException {
+    public void removeProductFromCart(Long cartId, Long cartItemId) throws CartNotFoundException, ItemNotFoundException {
         Cart cartWithItemToRemove = cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);
-        CartItem itemToRemove = cartItemRepository.findById(productId).orElseThrow(ItemNotFoundException::new);
+        CartItem itemToRemove = cartItemRepository.findById(cartItemId).orElseThrow(ItemNotFoundException::new);
         cartWithItemToRemove.getItems().remove(itemToRemove);
         cartRepository.save(cartWithItemToRemove);
     }
