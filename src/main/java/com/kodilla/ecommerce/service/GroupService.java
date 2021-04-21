@@ -42,7 +42,7 @@ public class GroupService {
             final Group group = groupOptional.get();
             final List<ProductDto> products = productRepository.findByGroup(group)
                     .stream()
-                    .map(productMapper::mapToDto)
+                    .map(productMapper::mapToProductDto)
                     .collect(Collectors.toList());
             final GroupDto groupDto = groupMapper.mapToGroupDto(group);
             groupDto.setProducts(products);
