@@ -67,18 +67,14 @@ public class GroupService {
         return Optional.empty();
     }
 
-    public Optional<GroupDto> deleteGroup(Long groupId) {
-        final Optional<Group> group = groupRepository.findById(groupId);
-        if(group.isPresent()) {
+    public void deleteGroup(Long groupId) {
             groupRepository.deleteById(groupId);
-        }
-        return Optional.empty();
     }
 
     public Optional<GroupDto> addProductToGroup(Long groupID, Long productID) {
         Optional<Group> group = groupRepository.findById(groupID);
         Optional<Product> product = productRepository.findById(productID);
-        if(group.isPresent()) {
+        if(group.isPresent() && product.isPresent()) {
             group.ifPresent(g -> g.getProducts().add(product.get()));
             groupRepository.save(group.get());
             return group.map(groupMapper::mapToGroupDto);
