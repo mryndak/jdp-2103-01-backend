@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,16 +24,17 @@ public class OrderTestSuite {
 
     @Autowired
     private OrderRepository orderRepository;
-    private final Product productTest = new Product();
-    private final Group groupTest = new Group();
-    private final OrderItem orderItemTest = new OrderItem();
-    private final List<OrderItem> orderItemListTest = new ArrayList<>();
-    private final Order orderTest = new Order();
-    private final User userTest = new User();
 
     @Test
     void testSaveOrder() {
         //Given
+        Product productTest = new Product();
+        Group groupTest = new Group();
+        OrderItem orderItemTest = new OrderItem();
+        List<OrderItem> orderItemListTest = new ArrayList<>();
+        Order orderTest = new Order();
+        User userTest = new User();
+
         groupTest.setName("Test - group name");
 
         productTest.setName("Test - product name");
@@ -75,6 +77,13 @@ public class OrderTestSuite {
     @Test
     void testUpdateOrder() {
         //Given
+        Product productTest = new Product();
+        Group groupTest = new Group();
+        OrderItem orderItemTest = new OrderItem();
+        List<OrderItem> orderItemListTest = new ArrayList<>();
+        Order orderTest = new Order();
+        User userTest = new User();
+
         groupTest.setName("Test - group name");
 
         productTest.setName("Test - product name");
@@ -114,6 +123,13 @@ public class OrderTestSuite {
     @Test
     void testDeleteOrder() {
         //Given
+        Product productTest = new Product();
+        Group groupTest = new Group();
+        OrderItem orderItemTest = new OrderItem();
+        List<OrderItem> orderItemListTest = new ArrayList<>();
+        Order orderTest = new Order();
+        User userTest = new User();
+
         groupTest.setName("Test - group name");
 
         productTest.setName("Test - product name");
