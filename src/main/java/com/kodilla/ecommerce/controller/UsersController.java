@@ -2,66 +2,51 @@ package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.domain.enums.StatusUser;
 import com.kodilla.ecommerce.dto.UserDto;
+import com.kodilla.ecommerce.dto.creator.CreateUserDto;
+import com.kodilla.ecommerce.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = "/v1/users", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class UsersController {
+
+    private final UserService userService;
 
     @GetMapping
     public List<UserDto> getUsers() {
-        return Arrays.asList(
-                UserDto.builder()
-                        .id(1L)
-                        .username("Test User")
-                        .status(StatusUser.ACTIVE_USER)
-                        .userKey(10000L)
-                        .build()
-        );
+        return userService.getUsers();
     }
 
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable Long id) {
-        return UserDto.builder()
-                .id(1L)
-                .username("Test User")
-                .status(StatusUser.ACTIVE_USER)
-                .userKey(10000L)
-                .build();
+        return userService.getUserById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id: " + id + " doesn't exist."));
     }
 
     @PutMapping("/block")
     public UserDto blockUser(@RequestBody UserDto userDto){
-        return UserDto.builder()
-                .id(1L)
-                .username("Test User")
-                .status(StatusUser.BLOCKED_USER)
-                .userKey(10000L)
-                .build();
+        userDto.setStatus(StatusUser.BLOCKED_USER);
+        return userService.updateUser(userDto).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
-    @PutMapping("/{username}/key")
-    public UserDto generateUserKey(@PathVariable String username){
-        return UserDto.builder()
-                .id(1L)
-                .username(username)
-                .status(StatusUser.ACTIVE_USER)
-                .userKey(10001L)
-                .build();
+    @PutMapping("/key")
+    public UserDto generateUserKey(@RequestBody UserDto userDto){
+        Random r = new Random();
+        Long userKey = r.nextLong();
+        userDto.setUserKey(userKey);
+        return userService.updateUser(userDto).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return UserDto.builder()
-                .id(1L)
-                .username("Test User")
-                .status(StatusUser.ACTIVE_USER)
-                .userKey(10000L)
-                .build();
+    public UserDto createUser(@RequestBody CreateUserDto userDto) {
+        return userService.saveUser(userDto);
     }
 }

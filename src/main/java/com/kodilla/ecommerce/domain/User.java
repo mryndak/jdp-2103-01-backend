@@ -44,7 +44,8 @@ public class User {
     )
     private List<Order> orders = new ArrayList<>();
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "cart_id", unique = true)
     private Cart cart;
 }
