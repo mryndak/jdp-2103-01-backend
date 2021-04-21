@@ -35,7 +35,7 @@ public class Product {
     @DecimalMin(value = "1.0")
     private BigDecimal price;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "group_id")
     private Group group;
 }
