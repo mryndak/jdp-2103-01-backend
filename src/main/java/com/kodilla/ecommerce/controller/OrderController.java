@@ -1,14 +1,15 @@
 package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
-import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.dto.OrderDto;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -28,9 +29,9 @@ public class OrderController {
 
         List<OrderItemDto> orderItemDto = Arrays.asList(OrderItemDto.builder()
                 .id(1L)
-                .productId(productDto)
+                .product(productDto)
                 .quantity(3)
-                .totalPrice(new BigDecimal(300))
+                .price(new BigDecimal(300))
                 .build());
 
         return Arrays.asList(OrderDto.builder()
