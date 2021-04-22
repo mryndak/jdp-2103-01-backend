@@ -1,6 +1,8 @@
 package com.kodilla.ecommerce.controller;
 
+import com.kodilla.ecommerce.controller.request.CartToOrderDto;
 import com.kodilla.ecommerce.dto.OrderDto;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,10 @@ public class OrderController {
         return orderService.saveOrder(orderDto);
     }
 
+    @PostMapping("/fromCart")
+    public OrderDto createOrderFromCart(@RequestBody CartToOrderDto cartToOrderDto){
+        return orderService.saveOrderFromCart(cartToOrderDto);
+    }
     @PutMapping
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return orderService.updateOrder(orderDto)
