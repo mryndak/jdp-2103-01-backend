@@ -46,8 +46,8 @@ public class Order {
     @Size(min = 10, max = 100)
     private String shippingAddress;
 
-    @NotNull
-    private LocalDateTime date;
+    //@NotNull
+    //private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")

@@ -52,7 +52,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         List<Order> orderListTest = new ArrayList<>();
@@ -101,7 +101,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         orderRepository.save(orderTest);
@@ -147,7 +147,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDate(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         orderRepository.save(orderTest);

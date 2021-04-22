@@ -13,4 +13,6 @@ public interface ProductMapper {
 
     @Mapping(target = "groupId", source = "group.groupId")
     ProductDto mapToProductDto(Product product);
+
+
 }

@@ -19,6 +19,6 @@ public class OrderDto {
     private String number;
     private StatusOrder status;
     private String shippingAddress;
-    private LocalDateTime date;
+    //private LocalDateTime date;
     private Long userId;
 }
