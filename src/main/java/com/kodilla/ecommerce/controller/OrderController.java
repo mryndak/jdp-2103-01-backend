@@ -1,19 +1,21 @@
 package com.kodilla.ecommerce.controller;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
-import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.dto.OrderDto;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = "/v1/orders", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@CrossOrigin("*")
 public class OrderController {
 
     @GetMapping
