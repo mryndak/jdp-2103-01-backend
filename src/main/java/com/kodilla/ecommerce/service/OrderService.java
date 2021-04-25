@@ -1,11 +1,11 @@
 package com.kodilla.ecommerce.service;
 
+import com.kodilla.ecommerce.controller.EmailController;
 import com.kodilla.ecommerce.controller.request.CartToOrderDto;
 import com.kodilla.ecommerce.domain.Order;
 import com.kodilla.ecommerce.domain.OrderItem;
 import com.kodilla.ecommerce.domain.Product;
 import com.kodilla.ecommerce.domain.User;
-import com.kodilla.ecommerce.domain.enums.StatusOrder;
 import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.OrderItemDto;
 import com.kodilla.ecommerce.mapper.OrderItemMapper;
@@ -39,6 +39,8 @@ public class OrderService {
     private final OrderItemMapper orderItemMapper;
     private final UserMapper userMapper;
     private final ProductMapper productMapper;
+
+    private final EmailController emailController;
 
     public List<OrderDto> getOrders() {
         return orderRepository.findAll(Sort.by("id"))
@@ -122,6 +124,7 @@ public class OrderService {
         if (order.isPresent()) {
             order.ifPresent(o -> {
                 o.setStatus(orderDto.getStatus());
+                emailController.sendEmail(o.getUser(), o);
                 o.setId(orderDto.getId());
             });
             return order.map(orderMapper::mapToOrderDto);

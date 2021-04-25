@@ -22,4 +22,5 @@ public class UserDto {
     @Builder.Default
     private List<OrderDto> orders = new ArrayList<>();
     private Long cartId;
+    private String email;
 }
