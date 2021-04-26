@@ -34,8 +34,10 @@ public class OrderService {
     private final OrderItemRepository orderItemRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+
     private final OrderMapper orderMapper;
     private final OrderItemMapper orderItemMapper;
+    private final UserMapper userMapper;
     private final ProductMapper productMapper;
 
     public List<OrderDto> getOrders() {
