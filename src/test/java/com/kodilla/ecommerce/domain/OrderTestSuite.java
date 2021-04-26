@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -53,7 +52,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDateOfCreation(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         List<Order> orderListTest = new ArrayList<>();
@@ -102,7 +101,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDateOfCreation(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         orderRepository.save(orderTest);
@@ -148,7 +147,7 @@ public class OrderTestSuite {
         orderTest.setNumber("123");
         orderTest.setStatus(StatusOrder.ACCEPTED);
         orderTest.setShippingAddress("Test - shipping address");
-        orderTest.setDateOfCreation(LocalDateTime.now());
+        //orderTest.setDate(LocalDateTime.now());
         orderTest.setUser(userTest);
 
         orderRepository.save(orderTest);

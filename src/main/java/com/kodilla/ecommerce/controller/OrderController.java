@@ -1,82 +1,65 @@
 package com.kodilla.ecommerce.controller;
 
-import com.kodilla.ecommerce.domain.enums.StatusOrder;
+import com.kodilla.ecommerce.controller.request.CartToOrderDto;
+import com.kodilla.ecommerce.domain.Order;
 import com.kodilla.ecommerce.dto.OrderDto;
 import com.kodilla.ecommerce.dto.OrderItemDto;
-import com.kodilla.ecommerce.dto.ProductDto;
+import com.kodilla.ecommerce.service.OrderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(value = "/v1/orders", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 @CrossOrigin("*")
+@Api(value = "This is Order Controller - Here we can do operations on the order")
 public class OrderController {
 
+    private final OrderService orderService;
+
     @GetMapping
+    @ApiOperation(value = "This lists our current orders", response = List.class)
     public List<OrderDto> getOrders() {
-        ProductDto productDto = ProductDto.builder()
-                .id(1L)
-                .name("kurtka zimowa")
-                .description("")
-                .price(new BigDecimal(100))
-                .groupId(1L)
-                .build();
-
-        List<OrderItemDto> orderItemDto = Arrays.asList(OrderItemDto.builder()
-                .id(1L)
-                .productId(productDto)
-                .quantity(3)
-                .totalPrice(new BigDecimal(300))
-                .build());
-
-        return Arrays.asList(OrderDto.builder()
-                .id(1L)
-                .items(orderItemDto)
-                .number("1")
-                .status(StatusOrder.IN_PROGRESS)
-                .shippingAddress("81-155 Gdynia, Kościuszki 1/2")
-                .date(LocalDateTime.of(2021, 3, 1, 23, 23, 15))
-                .userId(1L)
-                .build());
+        return orderService.getOrders();
     }
 
     @GetMapping ("/{id}")
+    @ApiOperation(value = "This allows to get an order by an id", response = OrderDto.class)
     public OrderDto getOrder(@PathVariable Long id) {
-        return OrderDto.builder()
-                .id(1L)
-                .number("1")
-                .status(StatusOrder.ACCEPTED)
-                .date(LocalDateTime.now())
-                .build();
+        return orderService.getOrderById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id: " + id + " doesn't exist."));
     }
 
     @PostMapping
+    @ApiOperation(value = "This will create a brand new order", response = OrderDto.class)
     public OrderDto createOrder(@RequestBody OrderDto orderDto) {
-        return OrderDto.builder()
-                .id(1L)
-                .number("1")
-                .status(StatusOrder.ACCEPTED)
-                .date(LocalDateTime.now())
-                .build();
+        return orderService.saveOrder(orderDto);
+    }
+
+    @PostMapping("/fromCart")
+    @ApiOperation(value = "Create an order from the cart", response = OrderDto.class)
+    public OrderDto createOrderFromCart(@RequestBody CartToOrderDto cartToOrderDto){
+        return orderService.saveOrderFromCart(cartToOrderDto);
     }
 
     @PutMapping
+    @ApiOperation(value = "This allows to update an order", response = OrderDto.class)
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        return OrderDto.builder()
-                .id(1L)
-                .number("1")
-                .status(StatusOrder.CANCELED)
-                .date(LocalDateTime.now())
-                .build();
+        return orderService.updateOrder(orderDto)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
+    @ApiOperation(value = "This allows us to delete our order by providing id")
     @DeleteMapping("/{id}")
     public void deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrderById(id);
     }
 }

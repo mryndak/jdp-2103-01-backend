@@ -15,7 +15,7 @@ public class OrderItemDto {
 
     private Long id;
     private int quantity;
-    private BigDecimal totalPrice;
-    private ProductDto productId;
-    private OrderDto orderId;
+    private BigDecimal price;
+    private ProductDto product;
+    private OrderDto order;
 }

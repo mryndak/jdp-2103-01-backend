@@ -1,24 +1,26 @@
-package com.kodilla.ecommerce.dto;
+package com.kodilla.ecommerce.controller.request;
 
 import com.kodilla.ecommerce.domain.enums.StatusOrder;
+import com.kodilla.ecommerce.dto.CartDto;
+import com.kodilla.ecommerce.dto.OrderItemDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class OrderDto {
+public class CartToOrderDto {
 
     private Long id;
-    private List<OrderItemDto> items;
     private String number;
-    private StatusOrder status;
+    @Builder.Default
+    private StatusOrder status = StatusOrder.ACCEPTED;
     private String shippingAddress;
     //private LocalDateTime date;
-    private Long userId;
+    private CartDto cartDto;
 }
