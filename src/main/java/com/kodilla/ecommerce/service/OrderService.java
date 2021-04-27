@@ -83,12 +83,11 @@ public class OrderService {
                 .map(item -> {
                     Optional<Product> product = productRepository.findById(item.getProductId());
                     if (product.isPresent()) {
-                        OrderItemDto orderItemDto = OrderItemDto.builder()
-                                .product(productMapper.mapToProductDto(productRepository.findById(item.getProductId()).get()))
+                        return OrderItemDto.builder()
+                                .product(productMapper.mapToProductDto(productRepository.findById(item.getProductId()).orElseThrow()))
                                 .quantity(item.getQuantity())
                                 .order(orderDto)
                                 .build();
-                        return orderItemDto;
                     }else {
                         return null;
                     }
