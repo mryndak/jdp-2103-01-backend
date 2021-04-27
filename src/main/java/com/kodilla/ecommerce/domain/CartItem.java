@@ -38,5 +38,5 @@ public class CartItem {
 
     @Transient
     @DecimalMin(value = "1.0")
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 }
