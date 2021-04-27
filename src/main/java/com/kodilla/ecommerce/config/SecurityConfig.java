@@ -1,11 +1,10 @@
 package com.kodilla.ecommerce.config;
 
 import com.kodilla.ecommerce.config.security.JsonObjectAuthenticationFilter;
+import com.kodilla.ecommerce.config.security.JwtAuthorizationFilter;
 import com.kodilla.ecommerce.config.security.RestAuthenticationFailureHandler;
 import com.kodilla.ecommerce.config.security.RestAuthenticationSuccessHandler;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -13,29 +12,25 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Configuration
 @EnableWebSecurity(debug = false)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private RestAuthenticationSuccessHandler authenticationSuccessHandler;
-    private RestAuthenticationFailureHandler authenticationFailureHandler;
+    private final RestAuthenticationSuccessHandler authenticationSuccessHandler;
+    private final RestAuthenticationFailureHandler authenticationFailureHandler;
+    private final String secret;
 
     public SecurityConfig(RestAuthenticationSuccessHandler authenticationSuccessHandler,
-                          RestAuthenticationFailureHandler authenticationFailureHandler) {
+                          RestAuthenticationFailureHandler authenticationFailureHandler,
+                          @Value("${jwt.secret}") String secret) {
         this.authenticationSuccessHandler = authenticationSuccessHandler;
         this.authenticationFailureHandler = authenticationFailureHandler;
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}password")
-                .roles("USER");
+        this.secret = secret;
     }
 
     @Override
@@ -46,13 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class); // 1
-                //.formLogin().permitAll();
-                //.and()
-                //.exceptionHandling() // 1
-                //.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)); //
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(authenticationFilter())
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), super.userDetailsService(), secret))
+                .exceptionHandling()
+                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
     }
-
 
     @Bean
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
@@ -63,4 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.inMemoryAuthentication()
+                .withUser("user")
+                .password("{noop}password")
+                .roles("USER");
+    }
 }
