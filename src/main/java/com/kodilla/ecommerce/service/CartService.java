@@ -23,11 +23,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CartService {
 
-    private CartRepository cartRepository;
-    private CartItemRepository cartItemRepository;
-    private ProductRepository productRepository;
-    private CartMapper cartMapper;
-    private CartItemMapper cartItemMapper;
+    private final CartRepository cartRepository;
+    private final CartItemRepository cartItemRepository;
+    private final ProductRepository productRepository;
+    private final CartMapper cartMapper;
+    private final CartItemMapper cartItemMapper;
 
     public List<CartDto> getAllCarts() {
         return cartRepository.findAll()
