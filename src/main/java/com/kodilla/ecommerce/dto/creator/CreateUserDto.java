@@ -14,4 +14,5 @@ public class CreateUserDto {
     private String name;
     private StatusUser status;
     private Long userKey;
+    private String email;
 }

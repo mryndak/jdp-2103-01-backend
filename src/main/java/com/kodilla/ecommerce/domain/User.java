@@ -48,4 +48,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "cart_id", unique = true)
     private Cart cart;
+
+    private String email;
 }
