@@ -34,10 +34,8 @@ public class OrderService {
     private final OrderItemRepository orderItemRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
-
     private final OrderMapper orderMapper;
     private final OrderItemMapper orderItemMapper;
-    private final UserMapper userMapper;
     private final ProductMapper productMapper;
 
     private final EmailController emailController;
@@ -87,12 +85,11 @@ public class OrderService {
                 .map(item -> {
                     Optional<Product> product = productRepository.findById(item.getProductId());
                     if (product.isPresent()) {
-                        OrderItemDto orderItemDto = OrderItemDto.builder()
-                                .product(productMapper.mapToProductDto(productRepository.findById(item.getProductId()).get()))
+                        return OrderItemDto.builder()
+                                .product(productMapper.mapToProductDto(productRepository.findById(item.getProductId()).orElseThrow()))
                                 .quantity(item.getQuantity())
                                 .order(orderDto)
                                 .build();
-                        return orderItemDto;
                     }else {
                         return null;
                     }
