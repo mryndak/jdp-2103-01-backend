@@ -17,5 +17,5 @@ public class CartItemDto {
     private Long cartId;
     private Long productId;
     private int quantity;
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 }
